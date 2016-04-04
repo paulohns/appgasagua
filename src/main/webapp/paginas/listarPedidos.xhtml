@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<style>
+	#form\3a panelCargo_header{height: 15px;}
+	#form\3a panelpedido_header{height: 15px;}
+	#form\3a panelFuncionario_header{height: 15px;}
+</style>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:growl id="globalMessage" globalOnly="true" autoUpdate="true" sticky="true" />
+		
+		<p:outputPanel autoUpdate="true">
+			<p:panel id="panelLoginResultado" rendered="#{!beanNavegacao.usuarioLogado}" style="width:250px; margin-left:550px; margin-top:100px;">
+				<p:outputPanel id="outPanelLogin">
+					<h:outputText value="Nome: "/>
+					<p:inputText value="#{beanNavegacao.nome}"/>
+					<h:outputText value="Senha: "/>
+					<p:password value="#{beanNavegacao.senha}"/>
+				</p:outputPanel>
+				<p:commandButton action="#{beanNavegacao.actionValidarLogin}" value="Logar" update="form:sdsd form:outPanelLogin :form:panelResultado :form:panelLoginResultado form:globalMessage"/>
+				<p:commandButton action="#{beanNavegacao.getInicio}" value="Voltar para o início" immediate="true"/>
+			</p:panel>
+		</p:outputPanel>
+		
+		<p:panel header="Cadastro de pedidos" style="width: 900px;" toggleable="true" >
+			<p:outputPanel id="outPanelCadastro">
+				<br/>
+				<br/>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5"> 
+					<h:outputLabel>Email Cliente: </h:outputLabel>
+					<p:inputText id="nome" value="#{pedidoMB.pedidoEmEdicao.emailCliente}" 
+						required="true" requiredMessage="Campo obrigatório"></p:inputText>
+					<p:message for="nome" />
+				</h:panelGrid>
+				<br/>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+			        <p:outputLabel for="tppedido" value="statusPedido do pedido:" />
+			        <p:selectOneMenu id="tppedido" value="#{pedidoMB.pedidoEmEdicao.emailCliente}" 
+			        	required="true" requiredMessage="Campo obrigatório">
+			        	<f:selectItem itemLabel="Selecione" itemValue="#{null}"/>
+<!-- 			        	<f:selectItems value="#{pedidoMB.comboTipopedido}" var="tipopedido" itemLabel="${tipopedido.descricao}" itemValue="${ipopedido}"/> -->
+			        </p:selectOneMenu>
+			        <p:message for="tppedido" />
+			    </h:panelGrid>
+				<br/>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+			        <p:outputLabel for="especificacao" value="Especificação do pedido:" />
+			        <p:selectOneMenu id="especificacao" value="#{pedidoMB.pedidoEmEdicao.emailCliente}" 
+			        	required="true" requiredMessage="Campo obrigatório">
+			        	<f:selectItem itemLabel="Selecione" itemValue="#{null}"/>
+<!-- 			        	<f:selectItems value="#{pedidoMB.comboEspecificacao}" var="especificacao" itemLabel="${especificacao.descricao}" itemValue="${especificacao}"/> -->
+			        </p:selectOneMenu>
+			        <p:message for="especificacao" />
+			    </h:panelGrid>
+				<br/>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<h:outputLabel>Valor: </h:outputLabel>
+					<p:inputText id="valor" value="#{pedidoMB.pedidoEmEdicao.emailCliente}" 
+						required="true" requiredMessage="Campo obrigatório"></p:inputText>
+					<p:message for="valor" />
+				</h:panelGrid>	
+				<br/>
+				<br/>
+			</p:outputPanel>
+				
+			<p:commandButton action="#{pedidoMB.actionAddPedido}" value="CADASTRAR" update="form:panelResultado form:outPanelCadastro"/>
+			<p:commandButton action="#{beanNavegacao.getInicio}" value="Voltar para o início" immediate="true"/>
+		</p:panel>
+		<br/>
+		
+		<p:outputPanel autoUpdate="true" id="sdsd">
+		<p:panel id="panelResultado" header="Tela inicial de Pedidos" rendered="#{beanNavegacao.usuarioLogado}">
+			<p:dataTable value="#{pedidoMB.listaPedidos}" emptyMessage="Nenhum pedido cadastrado" var="pedido" style="width:900px;" paginator="true" rows="10">
+				<f:facet name="header">
+					<p:commandButton icon="ui-icon-cart" disabled="true"/>
+					<h:outputText value="Pedidos cadastrados"></h:outputText>
+				</f:facet>
+				<p:column headerText="ID" width="30px;">
+					<h:outputText value="#{pedido.idPedido}"></h:outputText>
+				</p:column>
+				<p:column headerText="Valor do pedido" width="100px;" style="text-align:center;">
+					<h:outputText value="#{pedido.valorTotalPedido}"></h:outputText>
+				</p:column>
+				<p:column headerText="Pedido favorito" width="60px;" style="text-align:center;">
+					<h:outputText value="#{pedido.pedidoFavorito.descricao}"></h:outputText>
+				</p:column>
+				<p:column headerText="Data do pedido" width="80px;" style="text-align:center;">
+					<h:outputText value="#{pedido.dataPedidoFormatada}"></h:outputText>
+				</p:column>
+				<p:column headerText="Endereço" width="350px;" style="text-align:center;">
+					<h:outputText value="#{pedido.endereco.enderecoCompleto}"></h:outputText>
+				</p:column>
+				<p:column headerText="Status" width="70px;">
+					<h:outputText value="#{pedido.statusPedido.situacao}"></h:outputText>
+				</p:column>
+				<p:column headerText="Ações">
+					<p:commandButton value="Confirmar Pedido" icon="ui-icon-circle-check" alt="Confirmar Pedido" action="#{pedidoMB.actionConfirmarPedido(pedido)}" 
+						immediate="true" update=":form:panelResultado " process=":form:panelResultado">
+						<p:confirm header="Confirmation" message="Confirma a solicitação do pedido?" icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:commandButton value="Cancelar Pedido" icon="ui-icon-circle-close" alt="Cancelar Pedido" action="#{pedidoMB.actionCancelarPedido(pedido)}" 
+						immediate="true" update=":form:panelResultado " process=":form:panelResultado">
+						<p:confirm header="Confirmation" message="Confirma o cancelamento do pedido?" icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:commandButton value="Excluir Pedido" icon="ui-icon-trash" alt="Excluir Pedido" action="#{pedidoMB.actionExcluirPedido(pedido)}" 
+						immediate="true" update=":form:panelResultado " process=":form:panelResultado" rendered="#{pedido.statusPedido eq StatusPedidoEnum.SOLICITADO}">
+						<p:confirm header="Confirmation" message="Confirma o cancelamento do pedido?" icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText value="Total de pedidos #{pedidoMB.listaPedidos.size()}"></h:outputText>
+				</f:facet>
+			</p:dataTable>
+			<br></br>
+			<br></br>
+			<p:commandButton action="#{beanNavegacao.getInicio}" value="Voltar para o início" immediate="true"/>
+			<p:commandButton action="#{beanNavegacao.getCadastrarPedido}" value="Cadastrar pedido" immediate="true"/>
+		</p:panel>
+		</p:outputPanel>
+		<br></br>
+		<br></br>
+	</h:form>
+</h:body>
+</html>

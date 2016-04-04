@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:f="http://java.sun.com/jsf/core">
+ 
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Sistema GJB - Grupo de Jovens do Beato</title>
+        <style type="text/css">
+            body {background-color: #eeeeee; font-size: 12px}
+        </style> 
+    </h:head>
+    <h:body>
+	    	<pm:page id="first">
+	    		<pm:header title="Bem vindo ao sistema GJB Mobile" theme="b"></pm:header>
+	            
+	            <pm:content>
+		    	<h:form id="form">
+			    	<p:panel header="GJB - Grupo de Jovens do Beato">
+					        Aguardem. Logo novos módulos...
+			    	</p:panel>
+			    	<p:commandButton value="Logar no sistema" type="submit" icon="ui-icon-check"/> <br/>
+			    	<p:commandButton value="Fazer meu cadastro" type="submit" icon="ui-icon-check"/><br/>
+			    	<p:commandButton value="Resultado da votação" type="submit" icon="ui-icon-check"/><br/>
+			    	<p:commandButton value="Votar" type="submit" icon="ui-icon-check" action="#{beanNavegacao.getVotarMobile}"/>
+		        </h:form>
+	            </pm:content>
+	            
+	            <pm:footer title="Options" fixed="true">
+	                <p:panel>
+					       Em desenvolvimento
+			    	</p:panel>
+	            </pm:footer>
+	    		<pm:content>
+	        	</pm:content>
+	        </pm:page>
+    </h:body>
+</html>

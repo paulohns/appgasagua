@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<style>
+	#form\3a panelCargo_header{height: 15px;}
+	#form\3a panelProduto_header{height: 15px;}
+	#form\3a panelFuncionario_header{height: 15px;}
+</style>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:growl id="globalMessage" globalOnly="true" autoUpdate="true" sticky="true" />
+		
+		<p:panel header="Votação Grammy GJB 2014">
+		<br/>
+		<br/>
+		<h1>		PRÓXIMA VOTAÇÃO			</h1>
+		<p:commandLink value="voltar" action="votacaoGrammy"></p:commandLink>
+<!-- 		<p:commandLink value="voltar" onclick="alert('Não se meta onde não é chamado!')"></p:commandLink> -->
+<!-- 		votacaoGrammy -->
+		<br/>
+		<br/>
+		</p:panel>
+		
+		<br/>
+	</h:form>
+</h:body>
+</html>
