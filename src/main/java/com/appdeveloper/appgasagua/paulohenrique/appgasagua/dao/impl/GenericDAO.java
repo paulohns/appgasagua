@@ -149,11 +149,14 @@ abstract class GenericDAO<T> implements Serializable {
 	@SuppressWarnings({ "unchecked" })
 	public List<T> findAll() throws AppGasAguaException {
 		List<T> retorno = null;
-		if(session.isOpen()){
+		if (!session.isOpen()) {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+		} else {
 			session.beginTransaction();
 		}
 		retorno = session.createCriteria(entityClass).list();
-		session.getTransaction().commit();
+		commitAndCloseTransaction();
 		return retorno;
 	}
 
