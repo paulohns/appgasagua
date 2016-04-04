@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -68,4 +69,76 @@
 		<br/>
 	</h:form>
 </h:body>
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<style>
+	#form\3a panelCargo_header{height: 15px;}
+	#form\3a panelProduto_header{height: 15px;}
+	#form\3a panelFuncionario_header{height: 15px;}
+</style>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:growl id="globalMessage" globalOnly="true" autoUpdate="true" sticky="true" />
+		
+		<p:panel header="Votação Grammy GJB 2014">
+			<p:outputPanel id="outPutpanel" >
+				<br/>
+				<br/>
+				<h:outputLabel>Mulher + bonita: </h:outputLabel>
+				<p:selectOneMenu id="comboMulheres" value="#{beanVotacaoGrammy.meninaSelecionada}" required="true">
+					<f:selectItems value="#{beanVotacaoGrammy.comboMeninas}" var="categoria" itemValue="#{categoria}"/>
+					<p:ajax process="@this"/>
+				</p:selectOneMenu>
+				<br/>
+				<br/>
+				<h:outputLabel>Homen + bonito: </h:outputLabel>
+				<p:selectOneMenu id="comboHomens" value="#{beanVotacaoGrammy.meninoSelecionado}" required="true">
+					<f:selectItems value="#{beanVotacaoGrammy.comboMeninos}" var="categoria" itemValue="#{categoria}"/>
+				</p:selectOneMenu>
+				<br/>
+				<br/>
+				<h:outputLabel>Desligado(a): </h:outputLabel>
+				<p:selectOneMenu id="comboDesligado" value="#{beanVotacaoGrammy.desligadoSelecionado}" required="true">
+					<f:selectItems value="#{beanVotacaoGrammy.comboIntegrantes}" var="categoria" itemValue="#{categoria}"/>
+				</p:selectOneMenu>
+				<br/>
+				<br/>
+				<h:outputLabel>Cativante: </h:outputLabel>
+				<p:selectOneMenu id="comboCativante" value="#{beanVotacaoGrammy.cativanteSelecionado}" required="true">
+					<f:selectItems value="#{beanVotacaoGrammy.comboIntegrantes}" var="categoria" itemValue="#{categoria}"/>
+				</p:selectOneMenu>
+				<br/>
+				<br/>
+				<h:outputLabel>Palhaço: </h:outputLabel>
+				<p:selectOneMenu id="comboPalhaco" value="#{beanVotacaoGrammy.palhacoSelecionado}" required="true">
+					<f:selectItems value="#{beanVotacaoGrammy.comboIntegrantes}" var="categoria" itemValue="#{categoria}"/>
+				</p:selectOneMenu>
+				<br/>
+				<br/>
+				<h:outputLabel>**** DESTAQUE ****: </h:outputLabel>
+				<p:selectOneMenu id="comboDestaque" value="#{beanVotacaoGrammy.destaqueSelecionado}" required="true">
+					<f:selectItems value="#{beanVotacaoGrammy.comboIntegrantes}" var="categoria" itemValue="#{categoria}"/>
+				</p:selectOneMenu>
+				<br/>
+				<br/>
+				<br/>
+			</p:outputPanel>
+			<p:commandButton action="#{beanVotacaoGrammy.votar}" value="VOTAR" update="form:globalMessage outPutpanel" />
+			<p:commandButton action="#{beanNavegacao.getInicio}" disabled="true" value="Voltar para o início" immediate="true"/>
+			
+		</p:panel>
+		
+		<br/>
+	</h:form>
+</h:body>
+>>>>>>> 8d90bf7ae359e854bffd0431365a1f1a76cca0aa
 </html>

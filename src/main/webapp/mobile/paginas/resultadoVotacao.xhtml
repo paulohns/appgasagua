@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -151,4 +152,159 @@
 		<br></br>
 	</h:form>
 </h:body>
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<style>
+	#form\3a panelCargo_header{height: 15px;}
+	#form\3a panelProduto_header{height: 15px;}
+	#form\3a panelFuncionario_header{height: 15px;}
+</style>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:growl id="globalMessage" globalOnly="true" autoUpdate="true" sticky="true" />
+		
+		<p:outputPanel autoUpdate="true">
+		<p:panel id="panelLoginResultado" rendered="#{!beanNavegacao.usuarioLogado}" style="width:250px; margin-left:550px; margin-top:100px;">
+			<p:outputPanel id="outPanelLogin">
+				<h:outputText value="Nome: "/>
+				<p:inputText value="#{beanVotacaoGrammy.nome}"/>
+				<h:outputText value="Senha: "/>
+				<p:password value="#{beanVotacaoGrammy.senha}"/>
+			</p:outputPanel>
+			<p:commandButton action="#{beanVotacaoGrammy.validarLogin}" value="Logar" update="form:sdsd form:outPanelLogin :form:panelResultado :form:panelLoginResultado form:globalMessage"/>
+			<p:commandButton action="#{beanNavegacao.getInicio}" value="Voltar para o início" immediate="true"/>
+		</p:panel>
+		</p:outputPanel>
+		
+		<p:outputPanel autoUpdate="true" id="sdsd">
+		<p:panel id="panelResultado" toggleable="true" header="Resultado da eleição" rendered="#{beanNavegacao.usuarioLogado}">
+			<p:dataTable value="#{beanVotacaoGrammy.listaMeninasganhadoras}" var="item1" style="width:500px;">
+				<f:facet name="header">
+					<h:outputText value="Mulher mais bonita"></h:outputText>
+				</f:facet>
+				<p:column headerText="Nome">
+					<h:outputText value="#{item1[0]}"></h:outputText>
+				</p:column>
+				<p:column headerText="Categoria" width="100px;">
+					<h:outputText value="#{beanVotacaoGrammy.getCategoria(item1[1])}"></h:outputText>
+				</p:column>
+				<p:column headerText="Quantidade de votos" width="200px;" style="text-align:center;">
+					<h:outputText value="#{item1[2]}"></h:outputText>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText value="Concorrentes #{beanVotacaoGrammy.listaMeninasganhadoras.size()}"></h:outputText>
+				</f:facet>
+			</p:dataTable>
+			<br></br>
+			<br></br>
+			<p:dataTable value="#{beanVotacaoGrammy.listaMeninosGanhadores}" var="item2" style="width:500px;">
+				<f:facet name="header">
+					<h:outputText value="Homen mais bonito"></h:outputText>
+				</f:facet>
+				<p:column headerText="Nome">
+					<h:outputText value="#{item2[0]}"></h:outputText>
+				</p:column>
+				<p:column headerText="Categoria" width="100px;">
+					<h:outputText value="#{beanVotacaoGrammy.getCategoria(item2[1])}"></h:outputText>
+				</p:column>
+				<p:column headerText="Quantidade de votos" width="200px;" style="text-align:center;">
+					<h:outputText value="#{item2[2]}"></h:outputText>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText value="Concorrentes #{beanVotacaoGrammy.listaMeninosGanhadores.size()}"></h:outputText>
+				</f:facet>
+			</p:dataTable>
+			<br></br>
+			<br></br>
+			<p:dataTable value="#{beanVotacaoGrammy.listaCativantesGanhadores}" var="item1" style="width:500px;">
+				<f:facet name="header">
+					<h:outputText value="Cativante do grupo"></h:outputText>
+				</f:facet>
+				<p:column headerText="Nome">
+					<h:outputText value="#{item1[0]}"></h:outputText>
+				</p:column>
+				<p:column headerText="Categoria" width="100px;">
+					<h:outputText value="#{beanVotacaoGrammy.getCategoria(item1[1])}"></h:outputText>
+				</p:column>
+				<p:column headerText="Quantidade de votos" width="200px;" style="text-align:center;">
+					<h:outputText value="#{item1[2]}"></h:outputText>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText value="Concorrentes #{beanVotacaoGrammy.listaCativantesGanhadores.size()}"></h:outputText>
+				</f:facet>
+			</p:dataTable>
+			<br></br>
+			<br></br>
+			<p:dataTable value="#{beanVotacaoGrammy.listaDesligadosGanhadores}" var="item1" style="width:500px;">
+				<f:facet name="header">
+					<h:outputText value="Desligado do grupo"></h:outputText>
+				</f:facet>
+				<p:column headerText="Nome">
+					<h:outputText value="#{item1[0]}"></h:outputText>
+				</p:column>
+				<p:column headerText="Categoria" width="100px;">
+					<h:outputText value="#{beanVotacaoGrammy.getCategoria(item1[1])}"></h:outputText>
+				</p:column>
+				<p:column headerText="Quantidade de votos" width="200px;" style="text-align:center;">
+					<h:outputText value="#{item1[2]}"></h:outputText>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText value="Concorrentes #{beanVotacaoGrammy.listaDesligadosGanhadores.size()}"></h:outputText>
+				</f:facet>
+			</p:dataTable>
+			<br></br>
+			<br></br>
+			<p:dataTable value="#{beanVotacaoGrammy.listaPalhacosGanhadores}" var="item1" style="width:500px;">
+				<f:facet name="header">
+					<h:outputText value="Palhaço do grupo"></h:outputText>
+				</f:facet>
+				<p:column headerText="Nome">
+					<h:outputText value="#{item1[0]}"></h:outputText>
+				</p:column>
+				<p:column headerText="Categoria" width="100px;">
+					<h:outputText value="#{beanVotacaoGrammy.getCategoria(item1[1])}"></h:outputText>
+				</p:column>
+				<p:column headerText="Quantidade de votos" width="200px;" style="text-align:center;">
+					<h:outputText value="#{item1[2]}"></h:outputText>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText value="Concorrentes #{beanVotacaoGrammy.listaPalhacosGanhadores.size()}"></h:outputText>
+				</f:facet>
+			</p:dataTable>
+			<br></br>
+			<br></br>
+			<p:dataTable value="#{beanVotacaoGrammy.listaDestaquesGanhadores}" var="item1" style="width:500px;">
+				<f:facet name="header">
+					<h:outputText value="Destaque do grupo"></h:outputText>
+				</f:facet>
+				<p:column headerText="Nome">
+					<h:outputText value="#{item1[0]}"></h:outputText>
+				</p:column>
+				<p:column headerText="Categoria" width="100px;">
+					<h:outputText value="#{beanVotacaoGrammy.getCategoria(item1[1])}"></h:outputText>
+				</p:column>
+				<p:column headerText="Quantidade de votos" width="200px;" style="text-align:center;">
+					<h:outputText value="#{item1[2]}"></h:outputText>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText value="Concorrentes #{beanVotacaoGrammy.listaDestaquesGanhadores.size()}"></h:outputText>
+				</f:facet>
+			</p:dataTable>
+			<p:commandButton action="#{beanNavegacao.getInicio}" value="Voltar para o início" immediate="true"/>
+		</p:panel>
+		</p:outputPanel>
+		<br></br>
+		<br></br>
+	</h:form>
+</h:body>
+>>>>>>> 8d90bf7ae359e854bffd0431365a1f1a76cca0aa
 </html>

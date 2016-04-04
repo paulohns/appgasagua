@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -24,4 +25,32 @@
         </ui:define>
         
     </ui:decorate>
+=======
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+     
+    <ui:decorate template="/padrao.xhtml">
+        <ui:define name="centro">
+			<p:growl id="globalMessage" globalOnly="true" autoUpdate="true" sticky="true" />
+			
+			<p:outputPanel autoUpdate="true">
+			<p:panel id="panelLoginResultado" rendered="#{!beanNavegacao.usuarioLogado}" style="width:250px; margin-top:100px;">
+				<p:outputPanel id="outPanelLogin">
+					<h:outputText value="Nome: "/>
+					<p:inputText value="#{loginMB.login.usuario}"/>
+					<h:outputText value="Senha: "/>
+					<p:password value="#{loginMB.login.senha}"/>
+				</p:outputPanel>
+				<p:commandButton action="#{loginMB.actionLogin}" value="Logar" update="formPrincipal:globalMessage formPrincipal:layoutPrincipal"/>
+				<p:commandButton action="#{beanNavegacao.getInicio}" value="Voltar para o início" immediate="true"/>
+			</p:panel>
+			</p:outputPanel>
+        </ui:define>
+        
+    </ui:decorate>
+>>>>>>> 8d90bf7ae359e854bffd0431365a1f1a76cca0aa
 </html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Context path="/AppJSTL">
@@ -9,3 +10,16 @@
 
 </Context>
 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context path="/AppJSTL">
+
+<!-- 	<Resource auth="Container" driverClassName="org.hibernate.dialect.PostgreSQLDialect" -->
+<!-- 		maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/mypostgresql" type="javax.sql.DataSource" -->
+<!-- 		url="jdbc:postgresql://ec2-54-235-170-124.compute-1.amazonaws.com:5432/d6kv1mhrv4163q?sslmode=require"  -->
+<!-- 		username="yrgojvfrinmxfa" password="zbI75fPDqXsGjOGsVuF8hKMejK" /> -->
+
+</Context>
+
+>>>>>>> 8d90bf7ae359e854bffd0431365a1f1a76cca0aa
