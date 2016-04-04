@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -48,55 +47,4 @@
 	        </div>
 	    </h:form>  
     </h:body>
-=======
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
- 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Sistema de controle APP GÁS e ÁGUA</title>
-        <style type="text/css">
-            body {background-color: #eeeeee; font-size: 12px}
-        </style> 
-    </h:head>
-    <h:body>
-	    <h:form id="formPrincipal">
-	        <div align="center">
-	            <p:layout style="min-width:1020px;max-width:100%;min-height:600px" id="layoutPrincipal">  
-	                <p:layoutUnit position="north" size="88">  
-	                     <h1>Sistema de controle dos pedidos de GÁS e ÁGUA.</h1>
-	                </p:layoutUnit>  
-	 
-	                <p:layoutUnit position="west" size="220">  
-	                    <ui:insert name="menu">
-	                            <p:menu style="width: 200px">
-	                                <p:submenu label="Menu">
-	                                    <p:menuitem value="Listar Pedidos" icon="ui-icon-grip-solid-horizontal" action="#{beanNavegacao.getListarPedidos}" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
-	                                    <p:menuitem value="Cadastrar produtos" icon="ui-icon-plusthick" action="#{beanNavegacao.getCadastrarProdutos}" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
-	                                    <p:menuitem value="Fazer login" icon="ui-icon-person" action="#{beanNavegacao.getFazerLogin}" immediate="true" rendered="#{!beanNavegacao.usuarioLogado}"/>         
-	                                    <p:menuitem value="Sair do sistema" icon="ui-icon-contact" action="#{beanNavegacao.getFazerLogin}" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
-	                                </p:submenu>
-	                            </p:menu>
-	                    </ui:insert>
-	                </p:layoutUnit>  
-	                <p:layoutUnit position="center">  
-	                    <ui:insert name="centro">
-	<!--                         O que estiver aqui será substituido! -->
-		                    <h:graphicImage url="/imagens/sombra.png" style="height: 350px;"/>
-	                    </ui:insert>
-	                </p:layoutUnit>  
-	            </p:layout>
-	            
-	            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" onerror="PF('statusDialog').hide()" oncomplete="PF('statusDialog').hide()" />
- 
-				<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="true" header="Processando sua solicitação..." style="height: 100px; width: 300px">
-				    <p:graphicImage url="/imagens/img_carregando.gif" style="height:50px;"/>
-				</p:dialog>
-	        </div>
-	    </h:form>  
-    </h:body>
->>>>>>> 8d90bf7ae359e854bffd0431365a1f1a76cca0aa
 </html>
