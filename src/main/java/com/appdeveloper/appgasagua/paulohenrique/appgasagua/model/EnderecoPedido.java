@@ -3,14 +3,14 @@ package com.appdeveloper.appgasagua.paulohenrique.appgasagua.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
-@Table(name="tb_endereco")
+@Table(name="TB_ENDERECO")
 public class EnderecoPedido {
 
 	private Integer idEndereco;
@@ -20,8 +20,8 @@ public class EnderecoPedido {
 	private String cidadeEstado;
 	
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="TB_ENDERECO_ID_SEQ")
+	@SequenceGenerator(allocationSize=1, initialValue=1, name="TB_ENDERECO_ID_SEQ", sequenceName="TB_ENDERECO_ID_SEQ")
 	@Column(name="id",length=11, unique=true)
 	public Integer getIdEndereco() {
 		return idEndereco;

@@ -5,7 +5,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.dao.LoginDAO;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.exception.AppGasAguaException;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.model.LoginSistema;
-import com.appdeveloper.appgasagua.paulohenrique.appgasagua.utils.HibernateUtil;
+import com.appdeveloper.appgasagua.paulohenrique.appgasagua.utils.HibernateUtil_old;
 
 /**
  * @author PauloHenrique
@@ -73,7 +73,7 @@ public class LoginDAOImpl extends GenericDAO<LoginSistema> implements LoginDAO {
 		boolean logado = false;
 		try {
 			if (!session.isOpen()) {
-				session = HibernateUtil.getSessionFactory().openSession();
+				session = HibernateUtil_old.getSessionFactory().openSession();
 			}
 			session.beginTransaction();
 

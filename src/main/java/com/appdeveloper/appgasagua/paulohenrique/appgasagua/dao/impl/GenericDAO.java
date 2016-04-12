@@ -16,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.exception.AppGasAguaException;
+//import com.appdeveloper.appgasagua.paulohenrique.appgasagua.utils.HibernateUtil;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.utils.HibernateUtil;
 
 abstract class GenericDAO<T> implements Serializable {
@@ -62,6 +63,8 @@ abstract class GenericDAO<T> implements Serializable {
 			if (!session.isOpen()) {
 				session = HibernateUtil.getSessionFactory().openSession();
 				session.beginTransaction();
+			} else {
+				session.beginTransaction();
 			}
 
 			session.merge(entity);
@@ -79,12 +82,14 @@ abstract class GenericDAO<T> implements Serializable {
 			if (!session.isOpen()) {
 				session = HibernateUtil.getSessionFactory().openSession();
 				session.beginTransaction();
+			} else {
+				session.beginTransaction();
 			}
 			session.delete(entity);
-			commitAndCloseTransaction();
 		} catch (Exception e) {
 			throw new AppGasAguaException("Ocorreu um erro ao deletar o objeto.");
 		} finally {
+			commitAndCloseTransaction();
 			session.close();
 		}
 	}

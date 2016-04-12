@@ -56,8 +56,8 @@ public class Pedido{
 	private AvaliacaoPedido avaliacaoPedido;
 	
 	@Id
-	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "ident_pedido")
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="ident_pedido")
+	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "TB_PEDIDO_ID_SEQ", sequenceName="TB_PEDIDO_ID_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="TB_PEDIDO_ID_SEQ")
 	@Column(name="id", unique=true)
 	public Integer getIdPedido() {
 		return idPedido;

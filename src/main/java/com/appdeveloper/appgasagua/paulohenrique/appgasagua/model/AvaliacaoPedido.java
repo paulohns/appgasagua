@@ -3,17 +3,17 @@ package com.appdeveloper.appgasagua.paulohenrique.appgasagua.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author PauloHenrique
  *
  */
 @Entity
-@Table(name="tb_avaliacao_pedido")
+@Table(name="TB_AVALIACAO_PEDIDO")
 //@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQ_AVALIACAO")
 public class AvaliacaoPedido {
 	
@@ -21,8 +21,8 @@ public class AvaliacaoPedido {
 	private String descricao;
 	
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="TB_AVALIACAO_PEDIDO_ID_SEQ")
+	@SequenceGenerator(allocationSize=1, initialValue=1, name="TB_AVALIACAO_PEDIDO_ID_SEQ", sequenceName="TB_AVALIACAO_PEDIDO_ID_SEQ")
 	@Column(name="id",length=11, unique=true)
 	public Integer getIdAvaliacao() {
 		return idAvaliacao;

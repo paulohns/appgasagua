@@ -7,12 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.EspecificacaoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum;
 
 @Entity
@@ -24,11 +23,11 @@ public class Produto {
 	private String descricao;//alterar para marca
 	private BigDecimal valor;//valor de cada unidade
 	private TipoProdutoEnum tipo;//trazer esta informacao junto com a marca na combo no app
-	private EspecificacaoEnum especificacao;//remover este campo, o tipo ja especifica
+//	private EspecificacaoEnum especificacao;//remover este campo, o tipo ja especifica
 	
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="TB_PRODUTO_ID_SEQ")
+	@SequenceGenerator(allocationSize=1, initialValue=1, name="TB_PRODUTO_ID_SEQ", sequenceName="TB_PRODUTO_ID_SEQ")
 	@Column(name="id",length=11, unique=true)
 	public Integer getIdProduto() {
 		return idProduto;
@@ -54,14 +53,14 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	@Enumerated(EnumType.ORDINAL)
-	@Column(name="especificacao")
-	public EspecificacaoEnum getEspecificacao() {
-		return especificacao;
-	}
-	public void setEspecificacao(EspecificacaoEnum especificacao) {
-		this.especificacao = especificacao;
-	}
+//	@Enumerated(EnumType.ORDINAL)
+//	@Column(name="especificacao")
+//	public EspecificacaoEnum getEspecificacao() {
+//		return especificacao;
+//	}
+//	public void setEspecificacao(EspecificacaoEnum especificacao) {
+//		this.especificacao = especificacao;
+//	}
 	
 	@Column(name="quantidade")
 	public Integer getQuantidade() {
