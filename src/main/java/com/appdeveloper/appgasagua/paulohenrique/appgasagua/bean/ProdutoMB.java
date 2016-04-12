@@ -1,5 +1,6 @@
 package com.appdeveloper.appgasagua.paulohenrique.appgasagua.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -23,29 +24,41 @@ import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.impl.Produto
  */
 @ManagedBean(name = "produtoMB")
 @ViewScoped
-public class ProdutoMB {
+public class ProdutoMB implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private ProdutoService produtoService;
 	private List<Produto> listaProdutos;
 	private Produto produtoEmEdicao;
 	private RequestContext context;
+	
+	
 
-	@PostConstruct
-	public void construct() {
-
+	public ProdutoMB() {
+		super();
 		produtoEmEdicao = new Produto();
-		if (BeanNavegacao.getInstanciaBean() == null
-				|| !BeanNavegacao.getInstanciaBean().isUsuarioLogado()) {
-			return;
-		}
-
+		
 		produtoService = new ProdutoServiceImpl();
-
+		
 		if (listaProdutos == null) {
 			listarProdutos();
 		}
 
 		context = RequestContext.getCurrentInstance();
+		
+	}
+
+	@PostConstruct
+	public void construct() {
+
+		if (BeanNavegacao.getInstanciaBean() == null
+				|| !BeanNavegacao.getInstanciaBean().isUsuarioLogado()) {
+			return;
+		}
 	}
 
 	/**
@@ -119,6 +132,15 @@ public class ProdutoMB {
 	 */
 	public EspecificacaoEnum[] getComboEspecificacao() {
 		return EspecificacaoEnum.values();
+	}
+	
+	/**
+	 * @return
+	 */
+	public static ProdutoMB getInstanciaBean() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		return (ProdutoMB) context.getExternalContext().getSessionMap()
+				.get("produtoMB");
 	}
 
 	public List<Produto> getListaProdutos() {

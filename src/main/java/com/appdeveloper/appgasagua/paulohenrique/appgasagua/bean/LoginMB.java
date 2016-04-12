@@ -1,5 +1,7 @@
 package com.appdeveloper.appgasagua.paulohenrique.appgasagua.bean;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,8 +21,16 @@ import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.impl.LoginSe
  */
 @ManagedBean(name = "loginMB")
 @ViewScoped
-public class LoginMB {
+public class LoginMB implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/** A constante NAME. */
+    private static final String NAME = "loginMB";
+	
 	private LoginSistema login;
 	private LoginService loginService;
 	private BeanNavegacao beanNavegacao;
@@ -80,6 +90,10 @@ public class LoginMB {
 		beanNavegacao.getContext().addCallbackParam("loggedIn", loggedIn);
 		
 		beanNavegacao.setUsuarioLogado(loggedIn);
+	}
+	
+	public static String getName() {
+		return NAME;
 	}
 
 }

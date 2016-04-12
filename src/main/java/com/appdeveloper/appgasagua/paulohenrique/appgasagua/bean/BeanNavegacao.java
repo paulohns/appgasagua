@@ -1,5 +1,7 @@
 package com.appdeveloper.appgasagua.paulohenrique.appgasagua.bean;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -12,7 +14,12 @@ import org.primefaces.context.RequestContext;
  */
 @ManagedBean(name = "beanNavegacao")
 @SessionScoped
-public class BeanNavegacao {
+public class BeanNavegacao implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static final String LOGIN = "/login";
 

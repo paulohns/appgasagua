@@ -1,5 +1,6 @@
 package com.appdeveloper.appgasagua.paulohenrique.appgasagua.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +20,12 @@ import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.impl.PedidoS
 
 @ManagedBean(name="pedidoMB")
 @ViewScoped
-public class PedidoMB {
+public class PedidoMB implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private PedidoService pedidoService;
 	private List<Pedido> listaPedidos;
