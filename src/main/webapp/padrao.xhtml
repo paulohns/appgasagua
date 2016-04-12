@@ -25,8 +25,8 @@
 	                                <p:submenu label="Menu">
 	                                    <p:menuitem value="Listar Pedidos" icon="ui-icon-grip-solid-horizontal" action="#{beanNavegacao.getListarPedidos}" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
 	                                    <p:menuitem value="Cadastrar produtos" icon="ui-icon-plusthick" action="#{beanNavegacao.getCadastrarProdutos}" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
-	                                    <p:menuitem value="Fazer login" icon="ui-icon-person" action="#{beanNavegacao.getFazerLogin}" immediate="true" rendered="#{!beanNavegacao.usuarioLogado}"/>         
-	                                    <p:menuitem value="Sair do sistema" icon="ui-icon-contact" action="#{beanNavegacao.getFazerLogin}" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
+	                                    <p:menuitem value="Fazer login" icon="ui-icon-person" action="login" immediate="true" rendered="#{!beanNavegacao.usuarioLogado}"/>         
+	                                    <p:menuitem value="Sair do sistema" icon="ui-icon-contact" action="login" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
 	                                </p:submenu>
 	                            </p:menu>
 	                    </ui:insert>

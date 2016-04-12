@@ -23,31 +23,18 @@
 				</h:panelGrid>
 				<br />
 				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
-					<p:outputLabel for="tpProduto" value="Tipo do produto:" />
-					<p:selectOneMenu id="tpProduto"
+					<p:outputLabel for="especificacao" value="Especificação do produto:" />
+					<p:selectOneMenu id="especificacao"
 						value="#{produtoMB.produtoEmEdicao.tipo}" required="true"
 						requiredMessage="Campo obrigatório">
 						<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 						<f:selectItems value="#{produtoMB.comboTipoProduto}"
-							var="tipoProduto" itemLabel="${tipoProduto.descricao}"
-							itemValue="${ipoProduto}" />
+							var="especificacao" itemLabel="${especificacao.descricao}"
+							itemValue="${especificacao}" />
 					</p:selectOneMenu>
 					<p:message for="tpProduto" />
 				</h:panelGrid>
 				<br />
-				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
-					<p:outputLabel for="especificacao"
-						value="Especificação do produto:" />
-					<p:selectOneMenu id="especificacao"
-						value="#{produtoMB.produtoEmEdicao.especificacao}" required="true"
-						requiredMessage="Campo obrigatório">
-						<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-						<f:selectItems value="#{produtoMB.comboEspecificacao}"
-							var="especificacao" itemLabel="${especificacao.descricao}"
-							itemValue="${especificacao}" />
-					</p:selectOneMenu>
-					<p:message for="especificacao" />
-				</h:panelGrid>
 				<br />
 				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
 					<h:outputLabel>Valor: </h:outputLabel>
@@ -77,11 +64,8 @@
 				<p:column headerText="Descrição">
 					<h:outputText value="#{produto.descricao}"></h:outputText>
 				</p:column>
-				<p:column headerText="Tipo">
-					<h:outputText value="#{produto.tipo.descricao}"></h:outputText>
-				</p:column>
 				<p:column headerText="Especificação">
-					<h:outputText value="#{produto.especificacao.descricao}"></h:outputText>
+					<h:outputText value="#{produto.tipo.descricao}"></h:outputText>
 				</p:column>
 				<p:column headerText="Valor">
 					<h:outputText value="#{produto.valor}" style="margin-bottom: 3px;">
