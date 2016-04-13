@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.EspecificacaoProdutoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum;
 
 @Entity
@@ -22,8 +23,8 @@ public class Produto {
 	private Integer quantidade;//quantidade a ser comprada
 	private String descricao;//alterar para marca
 	private BigDecimal valor;//valor de cada unidade
-	private TipoProdutoEnum tipo;//trazer esta informacao junto com a marca na combo no app
-//	private EspecificacaoEnum especificacao;//remover este campo, o tipo ja especifica
+	private EspecificacaoProdutoEnum especificacao;//trazer esta informacao junto com a marca na combo no app
+	private TipoProdutoEnum tipoProdutoEnum;//remover este campo, o tipo ja especifica
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="TB_PRODUTO_ID_SEQ")
@@ -37,12 +38,12 @@ public class Produto {
 	}
 
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name="tipo")
-	public TipoProdutoEnum getTipo() {
-		return tipo;
+	@Column(name="especificacao")
+	public EspecificacaoProdutoEnum getEspecificacao() {
+		return especificacao;
 	}
-	public void setTipo(TipoProdutoEnum tipo) {
-		this.tipo = tipo;
+	public void setEspecificacao(EspecificacaoProdutoEnum especificacao) {
+		this.especificacao = especificacao;
 	}
 
 	@Column(name="descricao")
@@ -53,14 +54,14 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-//	@Enumerated(EnumType.ORDINAL)
-//	@Column(name="especificacao")
-//	public EspecificacaoEnum getEspecificacao() {
-//		return especificacao;
-//	}
-//	public void setEspecificacao(EspecificacaoEnum especificacao) {
-//		this.especificacao = especificacao;
-//	}
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name="tipo")
+	public TipoProdutoEnum getTipoProdutoEnum() {
+		return tipoProdutoEnum;
+	}
+	public void setTipoProdutoEnum(TipoProdutoEnum tipoProdutoEnum) {
+		this.tipoProdutoEnum = tipoProdutoEnum;
+	}
 	
 	@Column(name="quantidade")
 	public Integer getQuantidade() {

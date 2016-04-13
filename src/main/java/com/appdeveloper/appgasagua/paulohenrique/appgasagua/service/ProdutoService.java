@@ -2,6 +2,7 @@ package com.appdeveloper.appgasagua.paulohenrique.appgasagua.service;
 
 import java.util.List;
 
+import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.exception.AppGasAguaException;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.model.Produto;
 
@@ -27,5 +28,12 @@ public interface ProdutoService {
 	 * @throws AppGasAguaException
 	 */
 	void removerProduto(Produto protudoSelecionado)throws AppGasAguaException;
+
+	/**
+	 * @param tipoProdutoEnum
+	 * @return
+	 * @throws AppGasAguaException 
+	 */
+	List<Produto> listarProdutosPorTipo(TipoProdutoEnum tipoProdutoEnum) throws AppGasAguaException;
 
 }

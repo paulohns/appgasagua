@@ -11,8 +11,8 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
-import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.EspecificacaoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum;
+import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.EspecificacaoProdutoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.exception.AppGasAguaException;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.model.Produto;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.ProdutoService;
@@ -123,15 +123,15 @@ public class ProdutoMB implements Serializable{
 	/**
 	 * @return
 	 */
-	public TipoProdutoEnum[] getComboTipoProduto() {
-		return TipoProdutoEnum.values();
+	public EspecificacaoProdutoEnum[] getComboTipoProduto() {
+		return EspecificacaoProdutoEnum.values();
 	}
 
 	/**
 	 * @return
 	 */
-	public EspecificacaoEnum[] getComboEspecificacao() {
-		return EspecificacaoEnum.values();
+	public TipoProdutoEnum[] getComboEspecificacao() {
+		return TipoProdutoEnum.values();
 	}
 	
 	/**

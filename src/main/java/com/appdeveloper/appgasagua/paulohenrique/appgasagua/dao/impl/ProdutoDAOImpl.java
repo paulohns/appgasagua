@@ -1,12 +1,15 @@
 package com.appdeveloper.appgasagua.paulohenrique.appgasagua.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.exception.ConstraintViolationException;
 
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.dao.ProdutoDAO;
+import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.exception.AppGasAguaException;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.model.Produto;
+import com.appdeveloper.appgasagua.paulohenrique.appgasagua.utils.HibernateUtil;
 
 /**
  * @author PauloHenrique
@@ -50,6 +53,21 @@ public class ProdutoDAOImpl extends GenericDAO<Produto> implements ProdutoDAO{
 		}
 		
 		
+	}
+
+	@Override
+	public List<Produto> listarProdutosPorTipo(TipoProdutoEnum tipoProdutoEnum) throws AppGasAguaException {
+		String sql = "FROM Produto prod WHERE prod.tipoProdutoEnum =:tipoProduto";
+		List<Produto> listaProdutos = new ArrayList<Produto>();
+		if (!session.isOpen()) {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+		} else {
+			session.beginTransaction();
+		}
+		listaProdutos = (List<Produto>)session.createQuery(sql).setParameter("tipoProduto", tipoProdutoEnum).list();
+		closeTransaction();
+		return listaProdutos;
 	}
 
 }

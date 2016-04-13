@@ -32,7 +32,7 @@
 							var="especificacao" itemLabel="${especificacao.descricao}"
 							itemValue="${especificacao}" />
 					</p:selectOneMenu>
-					<p:message for="tpProduto" />
+					<p:message for="especificacao" />
 				</h:panelGrid>
 				<br />
 				<br />
@@ -54,7 +54,7 @@
 		<br />
 		<br />
 		<p:outputPanel id="outPanel" autoUpdate="true">
-			<p:dataTable id="tabelaProduto" style="width: 900px;"
+			<p:dataTable id="tabelaProduto" style="width: 100%;"
 				value="#{produtoMB.listaProdutos}" var="produto"
 				emptyMessage="Nenhum produto cadastrado." paginator="true" rows="10">
 				<f:facet name="header">

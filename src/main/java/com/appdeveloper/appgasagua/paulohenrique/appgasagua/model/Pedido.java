@@ -32,12 +32,31 @@ import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.StatusPedidoEn
 @Entity
 @Table(name="TB_PEDIDO", schema="public")
 public class Pedido{
+	
+	
+
+	public Pedido() {
+		super();
+	}
+	
+	public Pedido(boolean gerarClasses) {
+		super();
+		if(gerarClasses){
+			gasPedido = new Produto();
+			aguaPedido = new Produto();
+			endereco = new EnderecoPedido();
+		}
+	}
 
 	private Integer idPedido;
 
 	private String emailCliente;
 	
 	private BigDecimal valorTotalPedido;
+	
+    private Integer qntItemAgua;
+
+    private Integer qntItemGas;
 	
 	private StatusPedidoEnum statusPedido;
 	
@@ -80,6 +99,22 @@ public class Pedido{
 	}
 	public void setValorTotalPedido(BigDecimal valorTotalPedido) {
 		this.valorTotalPedido = valorTotalPedido;
+	}
+	
+	@Column(name="qntd_item_agua")
+	public Integer getQntItemAgua() {
+		return qntItemAgua;
+	}
+	public void setQntItemAgua(Integer qntItemAgua) {
+		this.qntItemAgua = qntItemAgua;
+	}
+	
+	@Column(name="qntd_item_gas")
+	public Integer getQntItemGas() {
+		return qntItemGas;
+	}
+	public void setQntItemGas(Integer qntItemGas) {
+		this.qntItemGas = qntItemGas;
 	}
 	
 	@Column(name="status_pedido", length=1)

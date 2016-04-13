@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.dao.ProdutoDAO;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.dao.impl.ProdutoDAOImpl;
+import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.exception.AppGasAguaException;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.model.Produto;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.ProdutoService;
@@ -39,6 +40,14 @@ public class ProdutoServiceImpl implements ProdutoService {
 	public void removerProduto(Produto protudoSelecionado)
 			throws AppGasAguaException {
 		produtoDAO.removerProduto(protudoSelecionado);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.ProdutoService#listarProdutosPorTipo(com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum)
+	 */
+	@Override
+	public List<Produto> listarProdutosPorTipo(TipoProdutoEnum produtoEnum) throws AppGasAguaException {
+		return produtoDAO.listarProdutosPorTipo(produtoEnum);
 	}
 
 }

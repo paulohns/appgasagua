@@ -2,7 +2,7 @@ package com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums;
 
 public enum FormaPagamentoEnum {
 
-	CARTAO("Cartão"), DINHEIRO("Dinheiro"); 
+	CARTAO_DEBITO("Cartão de débito"), CARTAO_CREDITO("Cartão de crédito"), DINHEIRO("Dinheiro"); 
 
 	private String descricao;
 
