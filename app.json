@@ -1,0 +1,23 @@
+{
+  "name": "appgasagua",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/java"
+    },
+    {
+      "url": "src/main/java"
+    },
+    {
+      "url": "src/main/webapp"
+    }
+  ]
+}
