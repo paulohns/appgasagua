@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:decorate template="/padrao.xhtml">
+	<ui:define name="centro">
+		<p:growl id="globalMessage" globalOnly="true" autoUpdate="true"
+			sticky="true" />
+		<p:outputPanel id="outPanel" autoUpdate="true">
+			<p:dataTable id="tabelaProduto" style="width: 100%;"
+				value="#{produtoMB.listaProdutos}" var="produto"
+				emptyMessage="Nenhum produto cadastrado." paginator="true" rows="10">
+				<f:facet name="header">
+					<p:commandButton icon="ui-icon-tag" disabled="true" />
+					<h:outputText value="Produtos cadastrados"></h:outputText>
+				</f:facet>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{produto.descricao}"></h:outputText>
+				</p:column>
+				<p:column headerText="Especificação">
+					<h:outputText value="#{produto.especificacao.descricao}"></h:outputText>
+				</p:column>
+				<p:column headerText="Valor">
+					<h:outputText value="#{produto.valor}" style="margin-bottom: 3px;">
+					    <f:convertNumber currencyCode="BRL" type="currency" groupingUsed="true" integerOnly="true" locale="pt_BR"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Ações">
+					<p:commandButton value="Excluir" icon="ui-icon-trash"
+						action="#{produtoMB.actionExcluir(produto)}" immediate="true"
+						update=":formPrincipal:tabelaProduto "
+						process=":formPrincipal:tabelaProduto :formPrincipal:outPanel">
+						<p:confirm header="Confirmation"
+							message="Confirma a exclusão do produto?" icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:commandButton value="Alterar" icon="ui-icon-pencil"
+						action="#{produtoMB.actionAlterar(produto)}" immediate="true"
+						update=":formPrincipal:tabelaProduto "
+						process=":formPrincipal:tabelaProduto :formPrincipal:outPanel">
+					</p:commandButton>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText value="Quantidade de produtos: " />
+					<h:outputText value="#{produtoMB.listaProdutos.size()}" />
+				</f:facet>
+			</p:dataTable>
+		</p:outputPanel>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+	</ui:define>
+</ui:decorate>
+</html>

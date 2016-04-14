@@ -15,6 +15,7 @@ public class EnderecoPedido {
 
 	private Integer idEndereco;
 	private String endereco;
+	private String bairro;
 	private Integer numero;
 	private String cep;
 	private String cidadeEstado;
@@ -36,6 +37,14 @@ public class EnderecoPedido {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	
+	@Column(name="bairro")
+	public String getBairro() {
+		return bairro;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 	
 	@Column(name="numero", length=6)

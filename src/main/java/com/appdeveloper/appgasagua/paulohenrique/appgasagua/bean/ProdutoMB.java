@@ -6,13 +6,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
 import org.primefaces.context.RequestContext;
 
-import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.EspecificacaoProdutoEnum;
+import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.TipoProdutoEnum;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.exception.AppGasAguaException;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.model.Produto;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.ProdutoService;
@@ -23,7 +23,7 @@ import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.impl.Produto
  *
  */
 @ManagedBean(name = "produtoMB")
-@ViewScoped
+@ViewAccessScoped
 public class ProdutoMB implements Serializable{
 
 	/**

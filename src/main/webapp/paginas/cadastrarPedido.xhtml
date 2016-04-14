@@ -1,95 +1,124 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-<style>
-	#form\3a panelCargo_header{height: 15px;}
-	#form\3a panelProduto_header{height: 15px;}
-	#form\3a panelFuncionario_header{height: 15px;}
-</style>
-</h:head>
-<h:body>
-	<h:form id="form">
-		<p:growl id="globalMessage" globalOnly="true" autoUpdate="true" sticky="true" />
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<ui:decorate template="/padrao.xhtml">
+	<ui:define name="centro">
+		<p:growl id="globalMessage" globalOnly="true" autoUpdate="true"
+			sticky="true" />
 		
-		<p:panel header="Cadastro de pedido">
-			<p:outputPanel id="outPanelCadastro">
-			
-				<p:fieldset legend="Gás">
-					<br/>
-					<h:outputLabel>Gás: </h:outputLabel>
-					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"> 
-	<!-- 					<p:inputText id="gas" value="#{pedidoMB.pedidoEmEdicao.gasPedido.descrciao}"  -->
-	<!-- 						required="true" requiredMessage="Campo obrigatório"></p:inputText> -->
-	<!-- 					<p:message for="gas" /> -->
-					</h:panelGrid>
-					<br/>
-					<h:outputLabel>Quantidade: </h:outputLabel>
-					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"> 
-	<!-- 					<p:inputText id="qntde" value="#{pedidoMB.pedidoEmEdicao.quantidade}"  -->
-	<!-- 						required="true" requiredMessage="Campo obrigatório"></p:inputText> -->
-	<!-- 					<p:message for="qntde" /> -->
-					</h:panelGrid>
-				</p:fieldset>
-				<br/>
-				<br/>
-				<p:fieldset legend="Água">
-					<h:outputLabel>Água: </h:outputLabel>
-					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"> 
-	<!-- 					<p:inputText id="agua" value="#{pedidoMB.aguaPedido.descricao}"  -->
-	<!-- 						required="true" requiredMessage="Campo obrigatório"></p:inputText> -->
-	<!-- 					<p:message for="agua" /> -->
-					</h:panelGrid>
-				</p:fieldset> 
-				<br/>
-				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
-			        <p:outputLabel for="formaPgto" value="Forma de pagamento:" />
-			        <p:selectOneRadio id="formaPgto" value="#{pedidoMB.pedidoEmEdicao.formaPgto}" 
-			        	required="true" requiredMessage="Campo obrigatório">
-			            <f:selectItem itemLabel="Selecione" itemValue="${null}" />
-			            <f:selectItems value="#{pedidoMB.comboFormaPagamento}"></f:selectItems>
-			        </p:selectOneRadio>
-			        <p:message for="formaPgto" />
-			    </h:panelGrid>				
-				<br/>
-			</p:outputPanel>
+		<p:panel id="panelCadastro" header="Fazer pedido" style="width: 900px;" toggleable="true" >
+
+			<p:tabView id="tabView">
+		        <p:tab id="tabItens" title="Itens do Pedido">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="6">
+							<h:outputLabel>Gás: </h:outputLabel>
+							<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="5"> 
+								<p:selectOneMenu id="produtoGas" value="#{pedidoMB.idGasPedido}">
+						            <f:selectItem itemLabel=" --Selecione-- " itemValue="${null}" />
+						            <f:selectItems value="#{pedidoMB.listaProdutoGas}" var="produtoGas" 
+						            	itemLabel="#{produtoGas.descricao}" itemValue="#{produtoGas.idProduto}" />
+						            <p:ajax event="change" update="@this" />
+						        </p:selectOneMenu>
+							</h:panelGrid>
+						</h:panelGrid>	
+						<br/>
+						<h:panelGrid columns="5" style="margin-bottom:5px" cellpadding="6">
+							<h:outputLabel>Quantidade: </h:outputLabel>
+							<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="5"> 
+								<p:inputText id="qntdeGas" size="5" maxlength="3" value="#{pedidoMB.pedidoEmEdicao.qntItemGas}">
+									<p:ajax event="change" listener="#{pedidoMB.setaValorItemGas}"/>
+								</p:inputText>
+							</h:panelGrid>
+							<br/>
+							<h:outputLabel>Valor: </h:outputLabel>
+							<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="5"> 
+								<p:inputText value="#{pedidoMB.gasPedido.valor}" disabled="true" size="10">
+									<f:convertNumber currencyCode="BRL" type="currency" groupingUsed="true" integerOnly="true" locale="pt_BR"/>
+								</p:inputText>
+							</h:panelGrid>
+						</h:panelGrid>
+						<br/>	
+						<p:separator />
+						<br/>	
+						<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="6">
+							<h:outputLabel>Água: </h:outputLabel>
+							<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="5"> 
+								<p:selectOneMenu id="produtoAgua" value="#{pedidoMB.idAguaPedido}">
+						            <f:selectItem itemLabel=" --Selecione-- " itemValue="${null}" />
+						            <f:selectItems value="#{pedidoMB.listaProdutoAgua}" var="produtoAgua" 
+						            	itemLabel="${produtoAgua.descricao}" itemValue="${produtoAgua.idProduto}" />
+						            <p:ajax event="change" update="@this" />
+						        </p:selectOneMenu>
+							</h:panelGrid>
+						</h:panelGrid>
+						<br/>
+						<h:panelGrid columns="5" style="margin-bottom:5px" cellpadding="5">
+							<h:outputLabel>Quantidade: </h:outputLabel>
+							<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="6"> 
+								<p:inputText id="qntdeAgua" size="5" maxlength="3" value="#{pedidoMB.pedidoEmEdicao.qntItemAgua}">
+									<p:ajax event="change" listener="#{pedidoMB.setaValorItemAgua}"/>	
+								</p:inputText>
+							</h:panelGrid>
+							<br/>
+							<h:outputLabel>Valor: </h:outputLabel>
+							<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"> 
+								<p:inputText value="#{pedidoMB.aguaPedido.valor}" disabled="true" size="10">
+									<f:convertNumber currencyCode="BRL" type="currency" groupingUsed="true" integerOnly="true" locale="pt_BR"/>
+								</p:inputText>
+							</h:panelGrid>	
+						</h:panelGrid>
+					</h:panelGrid>	
+			    </p:tab>
+		        <p:tab id="tabEndereco" title="Endereço">
+		            <h:panelGrid columns="2" cellpadding="10">
+		                <h:outputText value="Endereço" />
+		                <p:inputText value="#{pedidoMB.pedidoEmEdicao.endereco.endereco}" maxlength="200" size="80"/>
+		                <h:outputText value="Nº" />
+		                <p:inputMask mask="9?99999" value="#{pedidoMB.pedidoEmEdicao.endereco.numero}" size="8"/>
+		                <h:outputText value="Bairro" />
+		                <p:inputText value="#{pedidoMB.pedidoEmEdicao.endereco.bairro}" maxlength="50" size="20"/>
+		                <h:outputText value="CEP" />
+		                <p:inputMask mask="99.999?-999" value="#{pedidoMB.pedidoEmEdicao.endereco.cep}" size="12"/>
+		                <h:outputText value="Cidade - Estado" />
+		                <p:inputText value="#{pedidoMB.pedidoEmEdicao.endereco.cidadeEstado}" maxlength="50" size="20"/>
+		            </h:panelGrid>
+		        </p:tab>
+		        <p:tab id="tabDados" title="Dados do pedido">
+		            <h:panelGrid columns="2" cellpadding="10">
+		                <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					        <p:outputLabel for="formaPgto" value="Forma de pagamento:" />
+					        <p:selectOneMenu id="formaPgto" value="#{pedidoMB.pedidoEmEdicao.formaPgto}" 
+					        	required="true" requiredMessage="Campo obrigatório">
+					            <f:selectItem itemLabel=" --Selecione-- " itemValue="${null}" />
+					            <f:selectItems value="#{pedidoMB.comboFormaPagamento}" var="item" 
+					            	itemLabel="#{item.descricao}" itemValue="${item}"/>
+					        </p:selectOneMenu>
+					        <p:message for="formaPgto" />
+					    </h:panelGrid>				
+						<br/>
+						<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5"> 
+							<h:outputLabel>Email Cliente: </h:outputLabel>
+							<p:inputText id="nome" value="#{pedidoMB.pedidoEmEdicao.emailCliente}" 
+								required="true" requiredMessage="Campo obrigatório"></p:inputText>
+							<p:message for="nome" />
+						</h:panelGrid>
+						<br/>
+						<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="2">
+							<h:outputLabel>Valor Total: </h:outputLabel>
+							<h:outputText id="valor" value="#{pedidoMB.pedidoEmEdicao.valorTotalPedido}"/>
+						</h:panelGrid>	
+						<br/>
+		            </h:panelGrid>
+		        </p:tab>
+		    </p:tabView>
 				
-			<p:commandButton action="#{pedidoMB.actionSalvarPedido}" value="Salvar" update="form:tabelapedido form:outPanelCadastro" rendered="false"/>
-			<p:commandButton action="#{beanNavegacao.getInicio}" value="Voltar para o início" immediate="true"/>
+			<p:commandButton action="#{pedidoMB.actionAddPedido}" value="Salvar" icon="ui-icon-disk"/>
+			<p:commandButton action="#{beanNavegacao.getInicio}" value="Voltar para o início" immediate="true" icon="ui-icon-home"/>
 		</p:panel>
-		<br/>
-		<p:outputPanel id="outPanel" autoUpdate="true">
-			<p:dataTable id="tabelapedido" value="#{pedidoMB.listaPedidos}" var="pedido" emptyMessage="Pedido não cadastrado..">
-				<f:facet name="header">
-					<h:outputText value="Tabelas de pedidos"></h:outputText>
-				</f:facet>
-					<p:column headerText="Descrição do pedido">
-						<h:outputText value="#{pedido.descricao}"></h:outputText>
-					</p:column>
-					<p:column headerText="Forma de Pagamento">
-						<h:outputText value="#{pedido.formaPgto}"></h:outputText>
-					</p:column>
-					<p:column headerText="Valor total">
-						<h:outputText value="#{pedido.valorTotalPedido}"></h:outputText>
-					</p:column>
-					<p:column headerText="Situação">
-						<h:outputText value="#{pedido.statusPedido}"></h:outputText>
-					</p:column>
-				<p:column headerText="Ações" rendered="false">
-					<p:commandButton value="Excluir" action="#{pedidoMB.actionExcluir(pedido)}" 
-						immediate="true" update=":form:tabelapedido " process=":form:tabelapedido :form:outPanel"
-						onclick="alert('ds');return if(confirm('Format the hard disk?')){return true;}"/>
-				</p:column>
-				<f:facet name="footer">
-					<h:outputText value="Quantidade de pedidos: "/><h:outputText value="#{pedidoMB.listaPedidos.size()}"/>
-				</f:facet>
-			</p:dataTable>
-		</p:outputPanel>
-	</h:form>
-</h:body>
+	</ui:define>
+</ui:decorate>
 </html>

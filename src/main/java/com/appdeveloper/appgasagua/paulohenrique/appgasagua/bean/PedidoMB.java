@@ -8,9 +8,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
 import org.primefaces.context.RequestContext;
 
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.enums.FormaPagamentoEnum;
@@ -25,7 +25,7 @@ import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.impl.PedidoS
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.impl.ProdutoServiceImpl;
 
 @ManagedBean(name="pedidoMB")
-@ViewScoped
+@ViewAccessScoped
 public class PedidoMB implements Serializable{
 	
 	/**
@@ -39,6 +39,9 @@ public class PedidoMB implements Serializable{
 	private Pedido pedidoEmEdicao;
 	private Produto gasPedido;
 	private Produto aguaPedido;
+
+	private Integer idGasPedido;
+	private Integer idAguaPedido;
 
 	private List<Produto> listaProdutoAgua;
 	private List<Produto> listaProdutoGas;
@@ -127,8 +130,36 @@ public class PedidoMB implements Serializable{
 		listaPedidos.remove(pedido);
 	}
 	
-	public void setaValorItem(){
-		System.out.println(getGasPedido().getDescricao());
+	/**
+	 * 
+	 */
+	public void setaValorItemAgua(){
+		if(idAguaPedido != null){
+			BigDecimal valor = new BigDecimal(0);
+			for (Produto produto : listaProdutoAgua) {
+				if(produto.getIdProduto().equals(idAguaPedido)){
+					valor = produto.getValor().multiply(BigDecimal.valueOf(pedidoEmEdicao.getQntItemAgua()));
+					break;
+				}
+			}
+			aguaPedido.setValor(valor);
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public void setaValorItemGas(){
+		if(idGasPedido != null){
+			BigDecimal valor = new BigDecimal(0);
+			for (Produto produto : listaProdutoGas) {
+				if(produto.getIdProduto().equals(idGasPedido)){
+					valor = produto.getValor().multiply(BigDecimal.valueOf(pedidoEmEdicao.getQntItemGas()));
+					break;
+				}
+			}
+			gasPedido.setValor(valor);
+		}
 	}
 	
 	/**
@@ -184,6 +215,22 @@ public class PedidoMB implements Serializable{
 
 	public void setAguaPedido(Produto aguaPedido) {
 		this.aguaPedido = aguaPedido;
+	}
+
+	public Integer getIdGasPedido() {
+		return idGasPedido;
+	}
+
+	public void setIdGasPedido(Integer idGasPedido) {
+		this.idGasPedido = idGasPedido;
+	}
+
+	public Integer getIdAguaPedido() {
+		return idAguaPedido;
+	}
+
+	public void setIdAguaPedido(Integer idAguaPedido) {
+		this.idAguaPedido = idAguaPedido;
 	} 
 	
 

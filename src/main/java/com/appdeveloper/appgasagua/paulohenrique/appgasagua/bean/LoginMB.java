@@ -5,10 +5,10 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
 
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.exception.AppGasAguaException;
 import com.appdeveloper.appgasagua.paulohenrique.appgasagua.model.LoginSistema;
@@ -20,7 +20,7 @@ import com.appdeveloper.appgasagua.paulohenrique.appgasagua.service.impl.LoginSe
  *
  */
 @ManagedBean(name = "loginMB")
-@ViewScoped
+@ViewAccessScoped
 public class LoginMB implements Serializable{
 
 	/**

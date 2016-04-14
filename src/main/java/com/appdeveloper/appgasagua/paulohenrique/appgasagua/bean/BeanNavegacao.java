@@ -29,6 +29,8 @@ public class BeanNavegacao implements Serializable{
 
 	private static final java.lang.String CADASTRAR_PEDIDO = "/paginas/cadastrarPedido";
 
+	private static final String LISTAR_PRODUTOS = "/paginas/listarProduto";
+	
 	private static final String CADASTRAR_PRODUTO = "/paginas/cadastrarProduto";
 
 	private static final java.lang.String VISUALIZAR_AVALIACAO = "/paginas/visualizarAvaliacao";
@@ -88,7 +90,14 @@ public class BeanNavegacao implements Serializable{
 	/**
 	 * @return
 	 */
-	public static String getCadastrarProdutos() {
+	public static String getListarProdutos() {
+		return LISTAR_PRODUTOS;
+	}
+	
+	/**
+	 * @return
+	 */
+	public static String getCadastrarProduto() {
 		return CADASTRAR_PRODUTO;
 	}
 

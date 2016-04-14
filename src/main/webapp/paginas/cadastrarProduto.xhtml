@@ -25,7 +25,7 @@
 				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
 					<p:outputLabel for="especificacao" value="Especificação do produto:" />
 					<p:selectOneMenu id="especificacao"
-						value="#{produtoMB.produtoEmEdicao.tipo}" required="true"
+						value="#{produtoMB.produtoEmEdicao.especificacao}" required="true"
 						requiredMessage="Campo obrigatório">
 						<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 						<f:selectItems value="#{produtoMB.comboTipoProduto}"
@@ -46,52 +46,11 @@
 				<br />
 			</p:outputPanel>
 
-			<p:commandButton action="#{produtoMB.actionAddPedido}" icon="ui-icon-check"
-				value="Salvar" update="formPrincipal:tabelaProduto formPrincipal:outPanelCadastro" />
+			<p:commandButton action="#{produtoMB.actionAddPedido}" icon="ui-icon-disk"
+				value="Salvar" update="formPrincipal:outPanelCadastro" />
 			<p:commandButton action="#{beanNavegacao.getInicio}" icon="ui-icon-home"
 				value="Voltar para o início" immediate="true" />
 		</p:panel>
-		<br />
-		<br />
-		<p:outputPanel id="outPanel" autoUpdate="true">
-			<p:dataTable id="tabelaProduto" style="width: 100%;"
-				value="#{produtoMB.listaProdutos}" var="produto"
-				emptyMessage="Nenhum produto cadastrado." paginator="true" rows="10">
-				<f:facet name="header">
-					<p:commandButton icon="ui-icon-tag" disabled="true" />
-					<h:outputText value="Produtos cadastrados"></h:outputText>
-				</f:facet>
-				<p:column headerText="Descrição">
-					<h:outputText value="#{produto.descricao}"></h:outputText>
-				</p:column>
-				<p:column headerText="Especificação">
-					<h:outputText value="#{produto.tipo.descricao}"></h:outputText>
-				</p:column>
-				<p:column headerText="Valor">
-					<h:outputText value="#{produto.valor}" style="margin-bottom: 3px;">
-					    <f:convertNumber currencyCode="BRL" type="currency" groupingUsed="true" integerOnly="true" locale="pt_BR"/>
-					</h:outputText>
-				</p:column>
-				<p:column headerText="Ações">
-					<p:commandButton value="Excluir" icon="ui-icon-trash"
-						action="#{produtoMB.actionExcluir(produto)}" immediate="true"
-						update=":formPrincipal:tabelaProduto "
-						process=":formPrincipal:tabelaProduto :formPrincipal:outPanel">
-						<p:confirm header="Confirmation"
-							message="Confirma a exclusão do produto?" icon="ui-icon-alert" />
-					</p:commandButton>
-					<p:commandButton value="Alterar" icon="ui-icon-pencil"
-						action="#{produtoMB.actionAlterar(produto)}" immediate="true"
-						update=":formPrincipal:tabelaProduto "
-						process=":formPrincipal:tabelaProduto :formPrincipal:outPanel">
-					</p:commandButton>
-				</p:column>
-				<f:facet name="footer">
-					<h:outputText value="Quantidade de produtos: " />
-					<h:outputText value="#{produtoMB.listaProdutos.size()}" />
-				</f:facet>
-			</p:dataTable>
-		</p:outputPanel>
 
 		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 			<p:commandButton value="Sim" type="button"

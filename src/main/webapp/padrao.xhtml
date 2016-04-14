@@ -14,19 +14,27 @@
     <h:body>
 	    <h:form id="formPrincipal">
 	        <div align="center">
-	            <p:layout style="min-width:1020px;max-width:100%;min-height:600px" id="layoutPrincipal">  
+	            <p:layout style="min-width:1020px;max-width:100%;min-height:800px" id="layoutPrincipal">  
 	                <p:layoutUnit position="north" size="88">  
 	                     <h1>Sistema de controle dos pedidos de GÁS e ÁGUA.</h1>
 	                </p:layoutUnit>  
 	 
 	                <p:layoutUnit position="west" size="220">  
 	                    <ui:insert name="menu">
-	                            <p:menu style="width: 200px">
-	                                <p:submenu label="Menu">
-	                                    <p:menuitem value="Listar Pedidos" icon="ui-icon-grip-solid-horizontal" action="#{beanNavegacao.getListarPedidos}" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
-	                                    <p:menuitem value="Cadastrar produtos" icon="ui-icon-plusthick" action="#{beanNavegacao.getCadastrarProdutos}" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
+	                            <p:menu style="width: 200px; height:400px;">
+	                                <p:submenu label="Menu" >
+	                                	<p:submenu label="Pedidos" icon="ui-icon-contact" rendered="#{beanNavegacao.usuarioLogado}">
+							                <p:menuitem value="Listar" icon="ui-icon-grip-solid-horizontal" action="#{beanNavegacao.getListarPedidos}" immediate="true"/>
+							                <p:menuitem value="Cadastrar" icon="ui-icon-plusthick" action="#{beanNavegacao.getCadastrarPedido}" immediate="true"/>
+							            </p:submenu>
+	                                    <p:submenu label="Produtos" icon="ui-icon-contact" rendered="#{beanNavegacao.usuarioLogado}">
+		                                    <p:menuitem value="Listar" icon="ui-icon-grip-solid-horizontal" action="#{beanNavegacao.getListarProdutos}" immediate="true"/>         
+		                                    <p:menuitem value="Cadastrar" icon="ui-icon-plusthick" action="#{beanNavegacao.getCadastrarProduto}" immediate="true"/>         
+	                                    </p:submenu>
+	                                    <p:separator rendered="#{beanNavegacao.usuarioLogado}"/>
+	                                    <p:separator rendered="#{beanNavegacao.usuarioLogado}"/>
 	                                    <p:menuitem value="Fazer login" icon="ui-icon-person" action="login" immediate="true" rendered="#{!beanNavegacao.usuarioLogado}"/>         
-	                                    <p:menuitem value="Sair do sistema" icon="ui-icon-contact" action="login" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
+	                                    <p:menuitem value="Sair do sistema" icon="ui-icon-close" action="login" immediate="true" rendered="#{beanNavegacao.usuarioLogado}"/>         
 	                                </p:submenu>
 	                            </p:menu>
 	                    </ui:insert>
